@@ -1,0 +1,9 @@
+my_emotion_app/
+├── app.py
+├── emotion_detection.py
+├── requirements.txt
+├── __init__.py
+├── tests/
+│   ├── __init__.py
+│   └── test_emotion_detection.py
+├── server.py
