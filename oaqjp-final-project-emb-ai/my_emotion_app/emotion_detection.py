@@ -15,27 +15,21 @@ def analyze_emotion(text):
         }
     }
     
-    try:
-        # Make the POST request to the API
-        response = requests.post(url, headers=headers, json=payload)
-        
-        # Check if the request was successful
-        response.raise_for_status()
-        
+    # Make the POST request to the API
+    response = requests.post(url, headers=headers, json=payload)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
         # Parse the JSON response
         response_data = response.json()
         emotions = response_data['emotion']['document']['emotion']
         
         # Format the output
-        formatted_output = (f"Joy: {emotions.get('joy', 'N/A')}, Sadness: {emotions.get('sadness', 'N/A')}, "
-                            f"Anger: {emotions.get('anger', 'N/A')}, Disgust: {emotions.get('disgust', 'N/A')}, "
-                            f"Fear: {emotions.get('fear', 'N/A')}")
+        formatted_output = (f"Joy: {emotions['joy']}, Sadness: {emotions['sadness']}, "
+                            f"Anger: {emotions['anger']}, Disgust: {emotions['disgust']}, "
+                            f"Fear: {emotions['fear']}")
         return formatted_output
-    
-    except requests.exceptions.RequestException as e:
+    else:
         # Handle the error if the request was not successful
-        return f"Error: {str(e)}"
+        return f"Error: {response.status_code} - {response.text}"
 
-# Example usage
-text = "I'm feeling very happy today!"
-print(analyze_emotion(text))

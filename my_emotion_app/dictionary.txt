@@ -1,8 +1,0 @@
-my_emotion_app/
-├── tests/
-│   ├── __init__.py              # Makes 'tests' a package
-│   └── test_emotion_detection.py # Your test file
-├── app.py                       # Main application file
-├── emotion_detection.py         # Emotion detection logic
-├── __init__.py                  # Initializes 'my_emotion_app' as a package
-└── server.py                    # Server configuration and routes
